@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Flexbox #02</title>
+    <link rel="stylesheet" href="css/tag.css">
+    <style>
+
+        .flex-container {
+            display: flex;
+            width: 600px;
+            height: 300px;
+        }
+
+        .flex-container div:nth-child(3){
+            background-color: indianred;
+            order: 1;
+            order: 0;
+            order: -1;
+            align-self: center;
+            align-self: flex-end;
+            align-self: flex-start;
+            align-self: stretch;
+        }
+
+        .flex-container div{
+            width: 100px;
+            flex-grow: 0; /* Aumenta os itens ao espaço que está sobrando na div de acordo com o peso */
+            flex-grow: 1;
+        }
+
+        .flex-container div:nth-child(1){
+            flex-grow: 2;
+        }
+
+        .flex-container {
+            width: 300px;
+            flex-shrink: 1; /* Diminui os itens ao espaço que está sobrando na div de acordo com o peso */
+        }
+
+        .flex-container div:nth-child(1){
+            flex-shrink: 5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flex-container tag nolabel">
+        <div class="tag nolabel">1</div>
+        <div class="tag nolabel">2</div>
+        <div class="tag nolabel">3</div>
+        <div class="tag nolabel">4</div>
+    </div>
+    <script src="js/tag.js"></script>
+</body>
+
+</html>

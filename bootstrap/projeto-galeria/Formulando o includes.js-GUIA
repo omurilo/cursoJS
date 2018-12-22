@@ -1,0 +1,16 @@
+Função includes(parent)
+
+//Parent vai ser a quem o wm-include vai estar relacionado
+
+verifica se parent existe e se não, seta o body
+
+procura [wm-include] no parent e faz um foreach
+
+armazena em uma constante url o elemento do for-each com o attr wm-include
+
+faz a chamada ajax do jquery com o paramentro url e a callback quando bem sucedido
+e passa o data para o elemento por html(data) e remove o wm-include
+
+carrega os outros includes no elemento recursivamente com a função loadIncludes(e)
+
+chama a função no final
