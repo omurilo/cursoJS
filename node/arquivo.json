@@ -1,0 +1,8 @@
+{
+    "db":{
+        "host": "localhost",
+        "port": 8090,
+        "user": "admin",
+        "pass": "admin"
+    }
+}

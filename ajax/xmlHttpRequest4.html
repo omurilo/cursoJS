@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="get">
+        <input type="text" name="nome" id="nome">
+        <input type="text" name="idade" id="idade">
+        <input type="text" name="cep" id="cep">
+        <input type="button" value="Busca" id="busca-cep">
+        <input type="text" name="logradouro" id="logradouro">
+        <input type="text" name="bairro" id="bairro">
+        <input type="text" name="cidade" id="cidade">
+        <input type="button" value="Salvar" id="salvar">
+    </form>
+
+    <script>
+        var button = document.querySelector('#busca-cep');
+        var buttonsave = document.querySelector('#salvar');
+        var pessoa = {};
+        
+        button.addEventListener('click', function() {
+            
+            //recebe do formulario o valor do campo cep
+            var cep = document.querySelector('#cep').value;
+            var api = `https://viacep.com.br/ws/${cep}/json/`;
+            
+            //objeto request recebe a API
+            var request = new XMLHttpRequest();
+            
+            //objeto request dados da API passando GET e URL
+            request.open('GET', api, true);
+            
+            request.onload = function() {
+            'use strict'
+                pessoa.endereco = {logradouro : "", bairro : "", cidade:""}
+            
+                    //converte o texto para JSON e atribui a variavel resposta
+                    //variavel resposta está no escopo da função
+                    var resposta = JSON.parse(request.responseText);
+                    //Atribui aos objetos
+                    //pessoa.endereco.logradouro = resposta.logradouro;
+                    //pessoa.endereco.bairro = resposta.bairro;
+                    //pessoa.endereco.cidade = resposta.localidade;
+                
+                    //retorna para o form
+                    document.querySelector('#logradouro').value = resposta.logradouro;
+                    document.querySelector('#bairro').value = resposta.bairro;
+                    document.querySelector('#cidade').value = resposta.localidade;
+                
+                }
+            
+                request.send();
+                
+            })
+            // recebe dados do formulario
+            buttonsave.addEventListener('click', function() {
+                pessoa.nome = document.querySelector('#nome').value;
+                pessoa.idade = document.querySelector('#idade').value;
+                pessoa.endereco.logradouro = document.querySelector('#logradouro').value;
+                pessoa.endereco.bairro = document.querySelector('#bairro').value;
+                pessoa.endereco.cidade = document.querySelector('#cidade').value;
+            })
+    </script>
+</body>
+</html>
