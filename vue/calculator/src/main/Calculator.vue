@@ -2,8 +2,8 @@
   <div class="calculator">
     <Display :value="displayValue"/>
     <Button label="AC" @onCalcButtonClick="clearMemory"/>
-    <Button label="+/-" @onCalcButtonClick="setMinus"/>
-    <Button label="%" @onCalcButtonClick="setOperation"/>
+    <Button label="+/-" @onCalcButtonClick="setOpDifferent"/>
+    <Button label="%" @onCalcButtonClick="setOpDifferent"/>
     <Button label="/" operation @onCalcButtonClick="setOperation"/>
     <Button label="7" @onCalcButtonClick="addDigit"/>
     <Button label="8" @onCalcButtonClick="addDigit"/>
@@ -47,47 +47,27 @@ export default {
         this.operation = operation;
         this.current = 1;
         this.clearDisplay = true;
-      } else if(this.current !== 0 && this.values[1] !== null) {
+      } else if (this.current !== 0 && this.values[1] !== null) {
         const equals = operation === "=";
         const currentOperation = this.operation;
 
         try {
-          if (operation !== "%") {
-            switch (currentOperation) {
-              case "/": {
-                this.values[0] = this.values[0] / this.values[1];
-                break;
-              }
-              case "*": {
-                this.values[0] = this.values[0] * this.values[1];
-                break;
-              }
-              case "+": {
-                this.values[0] = this.values[0] + this.values[1];
-                break;
-              }
-              case "-": {
-                this.values[0] = this.values[0] - this.values[1];
-                break;
-              }
+          switch (currentOperation) {
+            case "/": {
+              this.values[0] = this.values[0] / this.values[1];
+              break;
             }
-          } else {
-            switch (currentOperation) {
-              case "*": {
-                this.values[0] =
-                  this.values[0] * ((this.values[0] * this.values[1] / 100)).toFixed(2)
-                break;
-              }
-              case "+": {
-                this.values[0] =
-                  this.values[0] + ((this.values[0] * this.values[1] / 100)).toFixed(2)
-                break;
-              }
-              case "-": {
-                this.values[0] =
-                  this.values[0] - ((this.values[0] * this.values[1] / 100)).toFixed(2)
-                break;
-              }
+            case "*": {
+              this.values[0] = this.values[0] * this.values[1];
+              break;
+            }
+            case "+": {
+              this.values[0] = this.values[0] + this.values[1];
+              break;
+            }
+            case "-": {
+              this.values[0] = this.values[0] - this.values[1];
+              break;
             }
           }
         } catch (e) {
@@ -120,13 +100,38 @@ export default {
         this.values[i] = newValue;
       }
     },
-    setMinus() {
-      if (this.current === 0) {
-        this.values[0] = -1 * this.values[0];
-        this.displayValue = this.values[0];
+    setOpDifferent(operation) {
+      if (operation === "%") {
+        switch (this.operation) {
+          case "*": {
+            this.values[1] =
+              ((this.values[0] * this.values[1]) / 100).toFixed(2);
+              this.displayValue = this.values[1];
+            break;
+          }
+          case "+": {
+            this.values[1] = (
+              (this.values[0] * this.values[1]) / 100
+            ).toFixed(2);
+            this.displayValue = this.values[1];
+            break;
+          }
+          case "-": {
+            this.values[1] = (
+              (this.values[0] * this.values[1]) / 100
+            ).toFixed(2);
+            this.displayValue = this.values[1];
+            break;
+          }
+        }
       } else {
-        this.values[1] = -1 * this.values[1];
-        this.displayValue = this.values[1];
+        if (this.current === 0) {
+          this.values[0] = -1 * this.values[0];
+          this.displayValue = this.values[0];
+        } else {
+          this.values[1] = -1 * this.values[1];
+          this.displayValue = this.values[1];
+        }
       }
     }
   }
