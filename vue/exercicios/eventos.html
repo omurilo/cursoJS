@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Eventos</title>
+    <link rel="stylesheet" href="/css/estilo.css">
+    <script src="/js/vue.min.js"></script>
+</head>
+<body class="exercicio">
+    <div id="app">
+        <p>{{ contador }}</p>
+        <p>
+            <!-- v-on método "bind" para um evento asssociado ao methods -->
+            <button v-on:click="add">+1</button> 
+            <!-- forma abreviada de v-on: -> @ (vai chamar um metodo ou executar um trecho de codigo) -->
+            <button @click="contador -=2">-2</button>
+        </p>
+        <p @mousemove="autalizarPosicao">
+            Coordenadas: {{ x }} e {{ y }}
+            <!-- Parar a propagação de um evento com função -->
+            <span @mousemove="stop">Aqui NÃO!</span><br>
+            <!-- Parar a propagação de um evento diretamente com o uma propriedade stop do evento -->
+            <span @mousemove.stop>Aqui NÃO!</span>
+        </p>
+        <input type="text" @keyup.enter="alerta" >
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                contador: 0,
+                x: 0,
+                y: 0
+            },
+            methods: {
+                add(){
+                    this.contador++
+                },
+                autalizarPosicao(e){
+                    this.x = e.clientX
+                    this.y = e.clientY
+                },
+                stop(e){
+                    e.stopPropagation()
+                },
+                alerta(e){
+                    return alert("Você apertou enter!")
+                }
+            }
+        })
+    </script>
+</body>
+</html>

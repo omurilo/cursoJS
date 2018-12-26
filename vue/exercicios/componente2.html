@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Componente</title>
+    <link rel="stylesheet" href="/css/estilo.css">
+    <script src="/js/vue.min.js"></script>
+</head>
+<body class="exercicio">
+    <div id="app">
+        <contador></contador>
+        <contador></contador>
+        <contador></contador>
+    </div>
+    <script>
+        Vue.component('contador', {
+            data: function(){
+                return {
+                    contador: 0
+                }
+            },
+            methods: {
+                contarMaisUm(e){
+                    this.contador++
+                }
+            },
+            template: `
+                <div>
+                    Numero Atual: {{ contador }}
+                    <button @click="contarMaisUm">++</button>
+                    <button @click="contador--">--</button>
+                </div>
+
+            ` 
+        })
+        new Vue({
+            el: "#app",
+            data: {
+
+            },
+        })
+    </script>
+</body>
+</html>

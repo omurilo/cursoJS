@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Conceitos Básicos</title>
+    <link rel="stylesheet" href="/css/estilo.css">
+    <script src="/js/vue.min.js"></script>
+</head>
+<body class="exercicio">
+    <div id="app">
+        <p>1) {{ 2 + 2}}</p>
+        <p>2) {{ "teste".toUpperCase() }}</p>
+        <p>3) Produto: {{ nome }}, R$ {{ preco }}, {{ desconto*100 }}%</p>
+        <p>4) Hora Certa: {{ horaCerta() }}</p>
+        <p>5) Preco Com Desconto: {{ precoComDesconto }}</p>
+    </div>
+    <script>
+        // Instância do Vue que recebe um objeto como parâmetro
+        new Vue({
+            // Elemento template do vue usando seletor
+            el: "#app",
+            // Hora objeto, hora função - Vue utiliza como um proxy todas as chamadas e redireciona para o data
+            data: {
+                nome: "Caneta",
+                preco: 6.89,
+                desconto: 0.15,
+            },
+            // São os métodos utilizados, geralmente chamados no template
+            methods: {
+                horaCerta(){
+                    return new Date().toLocaleString('PT-BR')
+                }
+            },
+            // São os valores computados no vue (valores do data)
+            computed: {
+                precoComDesconto(){
+                    return this.preco * (1 - this.desconto)
+                }
+            }
+        })
+    </script>
+</body>
+</html>
