@@ -5,10 +5,10 @@ import Main from '../template/Main'
 const headerProps = {
     icon: 'users',
     title: 'Usuários',
-    subtitle: 'Cadastro de Usuários: Incluir, Lista, Alterar e Excluir'
+    subtitle: 'Cadastro de Usuários: Incluir, Listar, Alterar e Excluir'
 }
 
-const baseUrl = 'http://localhost:3001/users'
+const baseUrl = 'http://192.168.0.103:3001/users'
 const initialState = {
     user: { name: '', email: '' },
     list: []
@@ -18,7 +18,7 @@ export default class UserCrud extends Component {
 
     state = { ...initialState }
 
-    componentWillMount(){
+    componentWillMount() {
         axios(baseUrl).then(resp => {
             this.setState({ list: resp.data })
         })
@@ -41,7 +41,7 @@ export default class UserCrud extends Component {
 
     getUpdatedList(user, add = true) {
         const list = this.state.list.filter(u => u.id !== user.id)
-        if(add) list.unshift(user)
+        if (add) list.unshift(user)
         return list
     }
 
@@ -70,7 +70,8 @@ export default class UserCrud extends Component {
                             <input type="text" className="form-control"
                                 name="email" value={this.state.user.email}
                                 onChange={e => this.updateFiled(e)}
-                                placeholder="Digite o Email..." />
+                                placeholder="Digite o Email..." 
+                                maxlength="32"/>
                         </div>
                     </div>
                 </div>
@@ -91,7 +92,7 @@ export default class UserCrud extends Component {
         )
     }
 
-    load(user){
+    load(user) {
         this.setState({ user })
     }
 
@@ -102,33 +103,35 @@ export default class UserCrud extends Component {
         })
     }
 
-    renderTable(){
+    renderTable() {
         return (
-            <table className="table mt-4">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Email</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {this.renderRows()}
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-hover mt-4">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.renderRows()}
+                    </tbody>
+                </table>
+            </div>
         )
     }
 
-    renderRows(){
+    renderRows() {
         return this.state.list.map(user => {
             return (
                 <tr key={user.id}>
-                    <td>{user.id}</td>
+                    <th scope="row">{user.id}</th>
                     <td>{user.name}</td>
                     <td>{user.email}</td>
                     <td>
-                        <button className="btn btn-warning" onClick={()=> this.load(user)}>
+                        <button className="btn btn-warning" onClick={() => this.load(user)}>
                             <i className="fa fa-pencil"></i>
                         </button>
                         <button className="btn btn-danger ml-2" onClick={() => this.remove(user)}>
@@ -144,8 +147,8 @@ export default class UserCrud extends Component {
         console.log(this.state.list)
         return (
             <Main {...headerProps}>
-                { this.renderForm() }
-                { this.renderTable() }
+                {this.renderForm()}
+                {this.renderTable()}
             </Main>
         )
     }

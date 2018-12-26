@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Diretiva Personalizada</title>
+    <link rel="stylesheet" href="/css/estilo.css">
+    <script src="/js/vue.min.js"></script>
+</head>
+<body class="exercicio">
+    <div id="app">
+        <input type="text" v-model="nome">
+        <div v-invertendo="nome"></div>
+    </div>
+    <script>
+        Vue.directive('invertendo', {
+            componentUpdated(el, binding){
+                const invertido = binding.value.split('').reverse().join('')
+                el.innerHTML = invertido
+            }
+        })
+        new Vue({
+            el: "#app",
+            data: {
+                nome: ''
+            },
+
+        })
+    </script>
+</body>
+</html>

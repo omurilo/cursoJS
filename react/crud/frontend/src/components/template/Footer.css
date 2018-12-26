@@ -6,3 +6,10 @@ footer.footer {
     background-color: #fff;
     box-shadow: var(--shadow);
 }
+
+@media(max-width:768px){
+    footer.footer {
+        justify-content: center;
+        font-size: .7em;
+    }
+}
