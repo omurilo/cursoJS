@@ -49,7 +49,7 @@
             <b-button class="ml-2" @click="reset">Cancelar</b-button>
         </b-form>
         <hr>
-        <b-table hover striped :items="articles" :fields="fields">
+        <b-table responsive hover striped :items="articles" :fields="fields">
             <template slot="userId" slot-scope=""></template>
             <template slot="actions" slot-scope="data">
                 <b-button variant="warning" @click="loadArticle(data.item)" class="mr-2 mb-2">

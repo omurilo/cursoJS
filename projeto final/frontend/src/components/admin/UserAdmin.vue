@@ -48,7 +48,7 @@
       </b-row>
     </b-form>
     <hr>
-    <b-table hover striped :items="users" :fields="fields">
+    <b-table responsive hover striped :items="users" :fields="fields">
       <template slot="actions" slot-scope="data">
         <b-button variant="warning" @click="loadUser(data.item)" class="mr-2 mb-2">
           <i class="fa fa-pencil"></i>
