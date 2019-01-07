@@ -25,7 +25,7 @@
             <b-button class="ml-2" @click="reset">Cancelar</b-button>
         </b-form>
         <hr>
-        <b-table hover striped :items="categories" :fields="fields">
+        <b-table responsive hover striped :items="categories" :fields="fields">
             <template slot="actions" slot-scope="data">
                 <b-button variant="warning" @click="loadCategory(data.item)" class="mr-2 mb-2">
                     <i class="fa fa-pencil"></i>

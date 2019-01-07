@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-export const baseApiUrl = 'http://localhost:3000' // Substitutir valor para api de produção
+export const baseApiUrl = 'http://192.168.0.103:3000' // Substitutir valor para api de produção
 
 export const userKey = '__knowledge_user'
 
