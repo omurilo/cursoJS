@@ -10,7 +10,7 @@ module.exports = {
     entry: './src/index.js',
     devServer: {
         contentBase: './build',
-        port: 9000,
+        port: 8000,
     },
     optimization: {
         minimizer: [

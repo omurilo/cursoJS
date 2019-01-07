@@ -1,0 +1,20 @@
+find()
+findOne()
+findOne(parametro) -> db.estados.findOne({sigla: "RJ"})
+
+Operadores $or e $and
+
+db.estados.find({$or: [{sigla: "RJ"}, {sigla: "AC"}]}).pretty()
+
+Pesquisa se o atributo está presente no objeto de pesquisa
+
+db.estados.find({populacao: {$exists: true}}).pretty()
+
+db.estados.find().skip(1)
+db.estados.find().skip(1).limit(2)
+db.estados.count()
+
+db.estados.find({sigla: "SP"}, {nome: 1, sigla: 1})
+db.estados.find({sigla: "SP"}, {nome: 1, sigla: 1, _id: 0})
+
+db.estados.find({sigla: "SP"}, {"cidades.nome": 1, _id: 0})

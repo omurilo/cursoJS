@@ -20,6 +20,7 @@ function loadIncludes(parent){
 
                 loadHtmlSuccessCallbacks.forEach(
                     callback => callback(data))
+                    // function () { ${'[wm-cursos]'}.cityButtons()}
                 loadIncludes(e)
             }
         })
