@@ -1,0 +1,18 @@
+mongod - inicia o banco de dados
+mongo - inicia o client do banco
+show dbs - mostra todos os bancos de dados disponiveis
+use - utiliza um banco de dados especifico
+db.createCollection - cria uma nova collection (tabela do SQL)
+show collections - mostra as colections existentes no banco selecioando
+ ------ - MONGO DB é um CASE SENSITIVE - -----------
+db.COLLECTION_NAME.drop() -- esclui a collections mencionada
+
+após excluir todos as collections do banco ele automaticamente é deletado, porém continua sendo usado, se uma 
+collection for criada ele volta a ser criado.
+
+db.COLLECTION_NAME.insert({OBJETO OU JSON}) - insere um novo dado ao collection, mesmo que essse não exista; 
+db.COLLECTION_NAME.save({ OBJETO OU JSON }) //
+
+db.estados.find() - retorna os registros salvos no banco
+db.estados.find().pretty() - formata o resultado do find em JSON
+

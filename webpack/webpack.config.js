@@ -13,7 +13,7 @@ module.exports = {
     },
     devServer: {
         contentBase: "./public",
-        port: 9000
+        port: 8000
     },
     optimization: {
         minimizer: [

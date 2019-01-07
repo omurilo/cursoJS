@@ -1,0 +1,15 @@
+module.exports = {
+    authSecret: '',
+    db: {
+        ps: {
+            host: '',
+            port: 5432,
+            database: '',
+            user: '',
+            password: ''
+        },
+        mongo: {
+            url: ''
+        }
+    }
+}
